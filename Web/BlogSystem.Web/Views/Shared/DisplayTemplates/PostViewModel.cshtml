@@ -1,0 +1,56 @@
+﻿@*@using BlogSystem.Web.Areas.Posts.Models
+@model PostViewModel
+
+<div class="row">
+    <div class="col-sm-1">
+        <div class="row">
+            @{
+                var postsVotesCountId = "article-content" + @Model.Id;
+            }
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    @Ajax.ActionLink("UP", "UpVoteById", "Home",
+                            new { postId = @Model.Id, area = "Votes" },
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = @postsVotesCountId,
+                            })
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    @Ajax.ActionLink("Down", "DownVoteById", "Home",
+                            new { postId = @Model.Id, area = "Votes" },
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = @postsVotesCountId,
+                            })
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <h2 class="media-heading">@Model.Title</h2>
+        <h4 class="media-body">@Model.Content</h4>
+
+        <span class="label label-default">Id: @post.Id</span>
+        <span class="label label-primary">@Model.Category</span>
+        <span class="label label-success">@Model.Author</span>
+        <span class="label label-info">@Model.DateTimePosted</span>
+        @if (@Model.Likes >= 0)
+        {
+            <span class="label label-success">Likes <span id="@postsVotesCountId">@Model.Likes</span></span>
+        }
+        else
+        {
+            <span class="label label-danger">Likes <span id="@postsVotesCountId">@Model.Likes</span></span>
+        }
+        <span class="label label-info">Comments @Model.CommentsCount</span>
+    </div>
+</div>*@

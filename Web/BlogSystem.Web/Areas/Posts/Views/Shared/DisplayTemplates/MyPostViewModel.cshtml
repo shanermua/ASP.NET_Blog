@@ -1,0 +1,29 @@
+﻿@using BlogSystem.Web.Areas.Posts.Models
+@using BlogSystem.Web.Helpers
+@using Microsoft.AspNet.Identity
+
+@model MyPostViewModel
+<div class="col-lg-12" id="@Model.Id">
+    <p>
+        <h2 class="media-heading">
+            @Html.ActionLink(@Model.Title, "Post", "Home", new { id = @Model.Id, area = "Posts" }, htmlAttributes: null)
+        </h2>
+        <h4 class="media-body">@Model.Content</h4>
+        <span class="label label-primary">@Model.Category</span>
+        <span class="label label-info">@Model.CreatedOn</span>
+        <span class="label label-info">@Model.Info</span>
+        @{
+            var editId = "edit" + @Model.Id;
+        }
+        <div id=@editId>
+            @if (@Model.IsDeleted == true)
+            {
+                @Html.Partial("_RePostLink", @Model.Id)
+            }
+            else
+            {
+                @Html.Partial("_EditLinks", @Model.Id)
+            }
+        </div>
+    </p>
+</div>

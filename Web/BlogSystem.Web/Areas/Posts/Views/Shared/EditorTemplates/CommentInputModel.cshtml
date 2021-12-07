@@ -1,0 +1,45 @@
+﻿@using BlogSystem.Web.Areas.Posts.Models
+@using BlogSystem.Web.Helpers
+
+@model CommentInputModel
+
+@using (Ajax.BeginForm("CommentPost", "Comments", new { area = "Posts" },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "modalContentElement",
+                LoadingElementId = "modalLoadingElement",
+                OnComplete = "$('#globalMesseges').trigger('customRefreshEvent', [" + @Model.PostId + "]);",
+                HttpMethod = "POST"
+            },
+            new { id = "commentPostForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    // excludes properties errors
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Comment:</h4>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(comment => comment.PostId, htmlAttributes: new { id = "postRefreshId" })
+                @if (@Model.ParentCommentId != null)
+                {
+                    @Html.HiddenFor(comment => comment.ParentCommentId)
+                }
+                <div>
+                    @Html.TextAreaFor(comment => comment.Content, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(post => post.Content, null, new { @class = "alert-warning" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @Html.Submit("Save", new { @class = "btn" })
+            </div>
+        </div>
+    </div>
+}

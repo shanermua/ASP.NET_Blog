@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58285629-1A79-4E37-9845-5880D5F665CA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlogSystem.Web</RootNamespace>
+    <AssemblyName>BlogSystem.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Ado">
+      <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.EF6">
+      <HintPath>..\..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5">
+      <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.2.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ViewenginesConfiguration.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\LogsController.cs" />
+    <Compile Include="Areas\Likes\Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Likes\LikesAreaRegistration.cs" />
+    <Compile Include="Areas\Messages\Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Messages\Models\ConversationPageViewModel.cs" />
+    <Compile Include="Areas\Messages\Models\ConversationViewModel.cs" />
+    <Compile Include="Areas\Messages\Models\DialogMessagesViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Messages\Models\DialogViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Messages\Models\MessageAlertsModel.cs" />
+    <Compile Include="Areas\Messages\Models\MessageInputModel.cs" />
+    <Compile Include="Areas\Messages\Models\MessageParticipantInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Messages\Models\MessagesPageViewModel.cs" />
+    <Compile Include="Areas\Messages\MessagesAreaRegistration.cs" />
+    <Compile Include="Areas\Messages\Models\MessageViewModel.cs" />
+    <Compile Include="Areas\Posts\Controllers\CommentsController.cs" />
+    <Compile Include="Areas\Posts\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Posts\Models\CommentInputModel.cs" />
+    <Compile Include="Areas\Posts\Models\CommentRouteValues.cs" />
+    <Compile Include="Areas\Posts\Models\CommentViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\CommentsPagingViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\CommentUpdateModel.cs" />
+    <Compile Include="Areas\Posts\Models\LastCommentsPageViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\LastCommentViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\MyPostsPagingViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\MyPostViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\PostEditModel.cs" />
+    <Compile Include="Areas\Posts\Models\PostInputModel.cs" />
+    <Compile Include="Areas\Posts\Models\PostListViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\PostSearchCategory.cs" />
+    <Compile Include="Areas\Posts\Models\PostsPagingViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\PostViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\SearchInputModel.cs" />
+    <Compile Include="Areas\Posts\Models\TopCommentedPostViewModel.cs" />
+    <Compile Include="Areas\Posts\Models\TopPostViewModel.cs" />
+    <Compile Include="Areas\Posts\PostsAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\HtmlExtensions.cs" />
+    <Compile Include="Hubs\Chat.cs" />
+    <Compile Include="Hubs\ChatHelpersClasses\AbstractChatRoom.cs" />
+    <Compile Include="Hubs\ChatHelpersClasses\PublicChatRoom.cs" />
+    <Compile Include="Hubs\ChatHelpersClasses\Participant.cs" />
+    <Compile Include="Hubs\PostsUpdater.cs" />
+    <Compile Include="Hubs\ViewModels\LastCommentViewModel.cs" />
+    <Compile Include="Hubs\ViewModels\NewPostModel.cs" />
+    <Compile Include="Infrastructure\Filters\LogAttribute.cs" />
+    <Compile Include="Infrastructure\Mapping\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Infrastructure\Mapping\IMapFrom.cs" />
+    <Compile Include="Infrastructure\Pagging\PagingHelper.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ManageUserViewModel.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BreadscrumbsModel.cs" />
+    <Compile Include="ViewModels\ColorType.cs" />
+    <Compile Include="ViewModels\Donation.cs" />
+    <Compile Include="ViewModels\EnumModel.cs" />
+    <Compile Include="ViewModels\FormInputModel.cs" />
+    <Compile Include="ViewModels\PaginationModel.cs" />
+    <Compile Include="ViewModels\Person.cs" />
+    <Compile Include="ViewModels\TestEditorsModel.cs" />
+    <Compile Include="ViewModels\UserInfoModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Messages\Views\Shared\DisplayTemplates\DialogMessagesViewModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Messages\Views\Shared\_LastMessagesList.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Posts\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Posts\Views\Home\InsertPost.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\PostListViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\TopPostViewModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Posts\Views\Shared\EditorTemplates\CommentUpdateModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Posts\Views\Shared\EditorTemplates\PostInputModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Posts\Views\Shared\_DeletePost.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_InsertPostForm.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Posts\Views\Shared\_Posts.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.lumen.css" />
+    <Content Include="Content\bootstrap.lumen.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.paper.css" />
+    <Content Include="Content\bootstrap.paper.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Files\Images\05cc1645-2097-40c9-af42-e75ddd00cff9.jpeg" />
+    <Content Include="Files\Images\0b9a161f-c5cc-4e88-9a92-6063c416ef77.jpeg" />
+    <Content Include="Files\Images\16106bc0-9cd1-47f4-9afc-00723c15d283.jpeg" />
+    <Content Include="Files\Images\2ea5cd9d-1300-403a-abdf-c17f4c56a615.jpeg" />
+    <Content Include="Files\Images\3f68deda-6abe-4dee-a389-12c08f6f5005.jpeg" />
+    <Content Include="Files\Images\669e61cf-d434-4099-91b6-0090c2ed630a.png" />
+    <Content Include="Files\Images\6be1150e-a1b3-43fc-b91f-27007587f540.png" />
+    <Content Include="Files\Images\a97197cb-e19c-49fb-875f-a91224f35c63.jpeg" />
+    <Content Include="Files\Images\avatar.jpg" />
+    <Content Include="Files\Images\c2e4cc1f-fd73-4331-a3c0-8ed8ebd90b03.jpeg" />
+    <Content Include="Files\Images\cfdb8463-97be-49d5-b4ab-af8e34a0df31.jpeg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Posts\Views\web.config" />
+    <Content Include="Areas\Posts\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Posts\Views\Home\MyPosts.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\MyPostViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
+    <Content Include="App_Code\RazorHelpers.cshtml" />
+    <Content Include="App_Code\TempDataHelpers.cshtml" />
+    <Content Include="Areas\Likes\Views\web.config" />
+    <Content Include="Areas\Likes\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Likes\Views\Shared\_LikingFeedbackMessage.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_MyPostsPartial.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_DisplayPost.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\EditorTemplates\CommentInputModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_CommentForm.cshtml" />
+    <Content Include="App_Code\LoadingElementHelper.cshtml" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\CommentViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_Comments.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_CommentUpdateForm.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_CommentUpdateResult.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_PostCommentedMesseges.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\LastCommentViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\Post.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_EditPostForm.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\EditorTemplates\PostEditModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_EditDeleteLinks.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_RePostLink.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_EditLinks.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_MostReadPosts.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_MostCommentedPosts.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\TopCommentedPostViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_MostLikedPosts.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\DisplayTemplates\TopLikedPostViewModel.cshtml" />
+    <Content Include="Areas\Posts\Views\Shared\_Statistic.cshtml" />
+    <Content Include="Areas\Messages\Views\web.config" />
+    <Content Include="Areas\Messages\Views\Shared\DisplayTemplates\MessageViewModel.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\EditorTemplates\MessageInputModel.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\_SendMessage.cshtml" />
+    <Content Include="Areas\Messages\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\_SendMessageLink.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\_DialogViewModel.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\DisplayTemplates\ConversationViewModel.cshtml" />
+    <Content Include="Areas\Messages\Views\Shared\_ViewFullConversation.cshtml" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\custom.js" />
+    <Content Include="Scripts\custom\customSignalRPosts.js" />
+    <Content Include="Scripts\custom\customSignalR.js" />
+    <Content Include="Scripts\custom\facebookExternalLogin.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\About.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_GetUserInfo.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Link1.cshtml" />
+    <Content Include="Views\Shared\_Link2.cshtml" />
+    <Content Include="Views\Shared\_Form.cshtml" />
+    <Content Include="Views\Shared\_FormServer.cshtml" />
+    <Content Include="Views\Home\FormPage.cshtml" />
+    <Content Include="Views\Home\HtmlEditors.cshtml" />
+    <Content Include="Views\Home\EnumEditors.cshtml" />
+    <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Shared\_ChatContent.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MyPostViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\_TestDateTimeEditor.cshtml" />
+    <Content Include="Views\Home\TestDateTime.cshtml" />
+    <Content Include="Views\Shared\_TestLinks.cshtml" />
+    <Content Include="Views\Home\UserInfo.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Shared\_Message.cshtml" />
+    <Content Include="Views\Home\Tests.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\Views\Logs\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Likes\Models\" />
+    <Folder Include="Areas\Likes\Views\Home\" />
+    <Folder Include="Areas\Messages\Views\Home\" />
+    <Folder Include="Areas\Posts\Views\Comments\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Messages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\BlogSystem.Common\BlogSystem.Common.csproj">
+      <Project>{ca5f8b21-7bbb-4e64-84e0-92e1014a9f72}</Project>
+      <Name>BlogSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\BlogSystem.Data\BlogSystem.Data.csproj">
+      <Project>{141658eb-e69e-4929-8c02-290d6d34e38b}</Project>
+      <Name>BlogSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\BlogSystem.Models\BlogSystem.Models.csproj">
+      <Project>{03e45975-7b97-44b8-bc4d-3b70b48cc6bf}</Project>
+      <Name>BlogSystem.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53042</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53042/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

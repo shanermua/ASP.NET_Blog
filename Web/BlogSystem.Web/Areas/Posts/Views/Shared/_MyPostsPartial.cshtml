@@ -1,0 +1,11 @@
+﻿@using BlogSystem.Web.Areas.Posts.Models
+@using BlogSystem.Web.Helpers
+
+@model MyPostsPagingViewModel
+
+@foreach (var item in @Model.Posts)
+{
+    @Html.DisplayFor(m => item)
+}
+
+@Html.Partial("_Pagination", @Model.Pagination)

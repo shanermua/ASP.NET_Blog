@@ -1,0 +1,146 @@
+﻿@using BlogSystem.Web.ViewModels
+@using System
+
+@model TestEditorsModel
+
+@{
+    ViewBag.Title = "HtmlEditors";
+}
+
+@Html.Partial("_TestLinks")
+
+@*@Html.Partial("_TestDateTimeEditor", DateTime.Now)*@
+
+@if (TempData["success"] != null)
+{
+    <div class="success">@TempData["success"]</div>
+}
+<br />
+
+@using (Html.BeginForm("HtmlEditors", "Home", FormMethod.Post, new { id = "formToSend" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary()
+
+    @*@Html.EditorForModel()*@
+    <div class="row">
+        <div class="col-md-1">
+            @Html.LabelFor(m => m.Name)
+        </div>
+        <div class="col-md-2">
+            @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+        </div>
+        <div class="alert-warning col-md-4">
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.Donations.Count; i++)
+    {
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(m => m.Donations[i].DonationValue)
+            </div>
+            <div class="col-md-2">
+                @Html.EditorFor(m => m.Donations[i].DonationValue)
+            </div>
+            <div class="alert-warning col-md-4">
+                @Html.ValidationMessageFor(m => m.Donations[i].DonationValue)
+            </div>
+        </div>
+    }
+    <div>
+        <div id="donationParent"></div>
+    </div>
+    <a id="addDonationAnchor">Add donation</a>
+    <div>
+        <div id="personParent"></div>
+    </div>
+    <a id="addPersonBtn">Add Person</a>
+
+    <div class="row">
+        <div class="col-md-1">
+            @Html.LabelFor(m => m.IsDonationAgreed)
+        </div>
+        <div class="col-md-2">
+            @Html.EditorFor(m => m.IsDonationAgreed)
+        </div>
+        <div class="alert-warning col-md-4">
+            @Html.ValidationMessageFor(m => m.IsDonationAgreed)
+        </div>
+    </div>
+    <div class="row">
+        @*
+            NOTE
+                <system.web>
+                    <globalization culture="en-US" uiCulture="en-US" />
+                </system.web>
+        *@
+        <div class="col-md-1">
+            @Html.LabelFor(m => m.Price)
+        </div>
+        <div class="col-md-2">
+            @Html.EditorFor(m => m.Price)
+        </div>
+        <div class="alert-warning col-md-4">
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+    </div>
+
+    @Html.Submit("Submit")
+}
+
+<script>
+    @{
+        var newPersonIndex = 0;
+    }
+
+    function updateIndex() {
+        newPersonIndex += 1;
+    }
+
+    function clearPersonValues(personId) {
+        var divId = '#personDiv' + personId;
+        var inputFullNameId = '#personFullName' + personId;
+        var inputAgeId = '#personAge' + personId;
+        $(inputFullNameId).val(null);
+        $(inputAgeId).val('0');
+        $(divId).css('display', 'none');
+        console.log(divId);
+    }
+
+    window.onload = function () {
+        $('#addDonationAnchor').bind({
+            click: function () {
+                $('#donationParent').append('<div><label>Extra Donation</label> @Html.TextBox("extraDonations", null, new { type = "number" })</div>');
+            }
+        });
+
+        var index = 0;
+
+        $('#addPersonBtn').bind({
+            click: function () {
+
+                @*//Dinamicaly add people - working
+                $('#personParent').append('<div><label>Extra Person FullName</label><input type="text" name="person[' + index + '].FullName" value="Ivan"/></div>');
+                $('#personParent').append('<div><label>Extra Person Age</label><input type="number" name="person[' + index + '].Age" value="21" /></div>');
+                index += 1;
+                *@
+
+                @*//Dinamicaly adding People objects to List<Person> - working*@
+                $('#personParent').append('<div id="personDiv' + index + '"><label>Extra Person FullName</label> '
+                    + '<input type="text" id="' + 'personFullName' + index + '" name="People[' + index + '].FullName" value="Ivan"/>'
+                    + '<label>Extra Person Age</label>'
+                    + '<input type="number" id="' + 'personAge' + index + '"  name="People[' + index + '].Age" value="21" />'
+                    + '<a href="#" onclick="clearPersonValues(' + index + ')" class="glyphicon glyphicon-trash" ></a></div>');
+
+                index += 1;
+            }
+        });
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

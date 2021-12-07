@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "141658eb-e69e-4929-8c02-290d6d34e38b": {
+      "ProjectGuid": "141658eb-e69e-4929-8c02-290d6d34e38b",
+      "DisplayName": "BlogSystem.Data",
+      "ColorIndex": 0
+    },
+    "d411ec12-52bd-432a-ab03-789f8cd095de": {
+      "ProjectGuid": "d411ec12-52bd-432a-ab03-789f8cd095de",
+      "DisplayName": "Data",
+      "ColorIndex": 1
+    },
+    "ca5f8b21-7bbb-4e64-84e0-92e1014a9f72": {
+      "ProjectGuid": "ca5f8b21-7bbb-4e64-84e0-92e1014a9f72",
+      "DisplayName": "BlogSystem.Common",
+      "ColorIndex": 2
+    },
+    "03e45975-7b97-44b8-bc4d-3b70b48cc6bf": {
+      "ProjectGuid": "03e45975-7b97-44b8-bc4d-3b70b48cc6bf",
+      "DisplayName": "BlogSystem.Models",
+      "ColorIndex": 3
+    },
+    "58285629-1a79-4e37-9845-5880d5f665ca": {
+      "ProjectGuid": "58285629-1a79-4e37-9845-5880d5f665ca",
+      "DisplayName": "BlogSystem.Web",
+      "ColorIndex": 4
+    },
+    "2f147d07-0f9c-4252-8a7c-cf44748e376a": {
+      "ProjectGuid": "2f147d07-0f9c-4252-8a7c-cf44748e376a",
+      "DisplayName": "Models",
+      "ColorIndex": 5
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 6
+}

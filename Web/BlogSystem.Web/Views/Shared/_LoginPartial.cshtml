@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li title="Users Online">
+                <a href="#" id="onlineUsers" data-toggle="modal" data-target="#layoutModal">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    (<span id="usersOnline">0</span>)
+                </a>
+            </li>
+            <li>
+                @Ajax.RawActionLink("<span id='globalMessegesCount' class='smallMessageCounter badge'></span>", "PostCommentedMesseges", "Comments", new { page = 1, area = "Posts" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "modalContentElement",
+                            LoadingElementId = "modalLoadingElement",
+                            OnBegin = "$('#modalContentElement').empty()",
+                            HttpMethod = "Get",
+                        },
+                        htmlAttributes: new { @class = "glyphicon glyphicon-globe largerGlyphicon", id = "globalMesseges", Title = "Comments of your posts.", data_toggle = "modal", data_target = "#layoutModal" })
+            </li>
+            <li>
+                @Ajax.RawActionLink("<span id='globalPrivateMessagesCount' class='smallMessageCounter badge'></span>", "GetMessages", "Home", new { page = 1, area = "Messages" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "modalContentElement",
+                            LoadingElementId = "modalLoadingElement",
+                            OnBegin = "$('#modalContentElement').empty()",
+                            HttpMethod = "Get",
+                        },
+                        htmlAttributes: new { @class = "glyphicon glyphicon-comment largerGlyphicon", id = "globalPrivateMessages", Title = "Your private messages.", data_toggle = "modal", data_target = "#layoutModal" })
+            </li>
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li>
+                @Html.Action("GetUserInfo", "Home", new { area = "" })
+            </li>
+            <li><a id="logOutButton" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", new { area = "" }, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

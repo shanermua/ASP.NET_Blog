@@ -1,0 +1,73 @@
+﻿@using BlogSystem.Web.Areas.Messages.Models
+@using BlogSystem.Web.Helpers
+@using Microsoft.AspNet.Identity
+
+@model ConversationPageViewModel
+
+@{
+    var className = string.Empty;
+    if (@Model.Page == 2)
+    {
+        className = "modal-content";
+    }
+}
+
+<div class="@className">
+    @if (@Model.Page == 2)
+    {
+        var href = "/Home/UserInfo?username=" + @Model.ParticipantName;
+        <a href="@href">
+            <img src="@Url.Content(@Model.ParticipantPictureUrl)" class="img-rounded img-responsive profilePic" title="@Model.ParticipantName" alt="picture">
+        </a>
+
+        @Ajax.RawActionLink("<span class='smallMessageCounter badge'></span>", "SendMessage", "Home", new { userName = @Model.ParticipantName, area = "Messages" },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "modalContentElement",
+            LoadingElementId = "modalLoadingElement",
+            OnBegin = "$('#modalContentElement').empty()",
+            HttpMethod = "Get",
+        },
+        htmlAttributes: new { @class = "glyphicon glyphicon-comment largerGlyphicon", Title = "Reply..." })
+    }
+
+    @if (@Model.Messages.Count() == 5)
+    {
+        var pageId = "pageId" + @Model.Page;
+
+        <div class="well well-sm" id="@pageId">
+            @Ajax.ActionLink(" Load older messages...", "ViewFullConversation", new { userName = @Model.ParticipantName, page = @Model.Page, area = "Messages" },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.ReplaceWith,
+                UpdateTargetId = @pageId,
+                LoadingElementId = "modalLoadingElement",
+                OnComplete = "$('#globalPrivateMessages').trigger('refreshMessagesEvent', ['" + this.User.Identity.Name + "']);",
+                HttpMethod = "Get",
+            },
+            htmlAttributes: new { Title = "Load more messages...", @class = "glyphicon glyphicon-refresh" })
+        </div>
+    }
+
+    @foreach (var message in @Model.Messages)
+    {
+        @Html.DisplayFor(model => message)
+    }
+
+    @if (@Model.Page == 2)
+    {
+        <div class="well well-sm">
+            @Ajax.ActionLink(" Reply...", "SendMessage", new { userName = @Model.ParticipantName, area = "Messages" },
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "modalContentElement",
+                LoadingElementId = "modalLoadingElement",
+                OnBegin = "$('#modalContentElement').empty()",
+                HttpMethod = "Get",
+            },
+            htmlAttributes: new { @class = "glyphicon glyphicon-comment largerGlyphicon", Title = "Reply..." })
+        </div>
+    }
+</div>

@@ -1,0 +1,21 @@
+﻿@*@using BlogSystem.Web.Areas.Posts.Models
+
+@model IEnumerable<MyPostViewModel>*@
+
+@{
+    ViewBag.Title = "My Posts";
+}
+
+@*@LoadingElementHelper.ProgressBar(id: "loading", width: 80, alertType: "info")*@
+
+<div id="postsShown">
+    @Html.Action("MyPostsPartial", "Home", new { area = "Posts" })
+</div>
+
+@*@Html.DisplayForModel(@Model)*@
+
+@* CLIENT VALIDATION *@
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

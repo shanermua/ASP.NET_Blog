@@ -1,0 +1,143 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Tests";
+}
+
+<h1>Tests</h1>
+
+<span class="label label-info">
+    @Ajax.ActionLink("Delete Posts", "DeleteAllPostTemp", "Home", new { area = "Posts" },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "delete",
+            HttpMethod = "Get",
+        })
+</span>
+
+<span class="label label-info">
+    @Ajax.ActionLink("Delete Comments", "DeleteAllCommentsTemp", "Comments", new { area = "Posts" },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "delete",
+            HttpMethod = "Get",
+        })
+</span>
+
+<span class="label label-info">
+    @Ajax.ActionLink("Delete Logs", "DeleteAllLogsTemp", "Comments", new { area = "Posts" },
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "delete",
+            HttpMethod = "Get",
+        })
+</span>
+@LoadingElementHelper.ProgressBar(id: "delete", width: 10, alertType: "info", maxValue: 10)
+
+<ul class="breadcrumb">
+    <li class="active">Home</li>
+</ul>
+
+@Html.Partial("_TestLinks")
+
+<ul>
+    <li>
+        @Ajax.ActionLink("Link1", "Link1", "Home",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ajax-content",
+            Confirm = "Send ajax request?"
+        },
+        new { @class = "no-ajaxy" })
+        <br />
+    </li>
+    <li>
+        @Ajax.ActionLink("Link2", "Link2", "Home",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ajax-content",
+            LoadingElementId = "loading",
+            OnBegin = "clearContent('ajax-content')"
+
+        },
+        new { @class = "no-ajaxy" })
+    </li>
+    <li>
+        @Ajax.ActionLink("FormAjaxPartial", "Form", "Home",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ajax-content",
+            LoadingElementId = "loading",
+            OnBegin = "clearContent('ajax-content')"
+
+        },
+        new { @class = "no-ajaxy" })
+    </li>
+    <li>
+        @Ajax.ActionLink("FormHtmlPartial", "FormServer", "Home",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ajax-content",
+            LoadingElementId = "loading",
+            OnBegin = "clearContent('ajax-content')"
+
+        },
+        new { @class = "no-ajaxy" })
+    </li>
+
+</ul>
+
+<div class="jumbotron" style="position: relative; min-height: 150px">
+    <div id="loading" style="display: none; position: absolute; top: 10px; left: 10px; width: 100px;">LOADING...</div>
+    <div id="ajax-content">
+        @if (TempData["success"] != null)
+        {
+            <div class="success">@TempData["success"]</div>
+        }
+    </div>
+</div>
+
+<div>
+    @if (!(Request.IsAuthenticated))
+    {
+        <input type="text" id="userName" value="UserName" />
+        <br />
+        <input type="text" id="anonymous-message" value="message" />
+        <button id="send-anonymous-message">Send</button>
+    }
+    else
+    {
+        <div id="currentRooms">
+            <div>
+                Current rooms:
+            </div>
+        </div>
+        <input type="text" id="room" value="Room" />
+        <button id="join-room">Join</button>
+        <br />
+        <input type="text" id="message" value="message" />
+        <button id="send-message">Send</button>
+        <br />
+        <input type="text" id="room-message" value="message" />
+        <button id="send-message-to-room">Send To Rooms Only</button>
+    }
+</div>
+<div id="messages">
+</div>
+<div id="testUl"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function clearContent(id) {
+            $("#" + id).empty();
+        }
+    </script>
+}

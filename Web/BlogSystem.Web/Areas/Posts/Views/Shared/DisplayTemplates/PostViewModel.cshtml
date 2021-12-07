@@ -1,0 +1,169 @@
+﻿@using BlogSystem.Web.Areas.Posts.Models
+@using Microsoft.AspNet.Identity
+@using BlogSystem.Web.Helpers
+
+@model PostViewModel
+
+@{
+    var pagingUpdateTarget = "p" + @Model.Id + "pc";
+    var commentFormId = "commentFormId";
+}
+
+<div class="row" id="@Model.Id">
+    @if (User.Identity.IsAuthenticated)
+    {
+        var postVotingId = "postVoting" + @Model.Id;
+        var feedBackMessageId = "feedbackMessage" + @Model.Id;
+    }
+    <div class="col-sm-12">
+        <h2>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>
+                    @Ajax.ActionLink(" ", "VotePost", "Home", new { id = @Model.Id, vote = true, area = "Likes" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "modalContentElement",
+                            LoadingElementId = "modalLoadingElement",
+                            OnBegin = "$('#modalContentElement').empty()",
+                            HttpMethod = "Post",
+                        },
+                                  htmlAttributes: new { @class = "glyphicon glyphicon-thumbs-up", Title = "Vote Up", data_toggle = "modal", data_target = "#layoutModal" })
+                </span>
+                <span>
+                    @Ajax.ActionLink(" ", "VotePost", "Home", new { id = @Model.Id, vote = false, area = "Likes" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "modalContentElement",
+                            LoadingElementId = "modalLoadingElement",
+                            OnBegin = "$('#modalContentElement').empty()",
+                            HttpMethod = "Post",
+                        },
+                            htmlAttributes: new { @class = "glyphicon glyphicon-thumbs-down", Title = "Vote Down", data_toggle = "modal", data_target = "#layoutModal" })
+
+                </span>
+            }
+            @Ajax.ActionLink(@Model.Title, "DisplayPost", "Home", new { id = @Model.Id, area = "Posts" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.ReplaceWith,
+                            UpdateTargetId = "postContainer",
+                            LoadingElementId = "mainLoadingElement",
+                            HttpMethod = "Get",
+                        },
+                        new { Title = "Refresh Post" })
+        </h2>
+
+        <span class="label label-primary">@Model.Category</span>
+        <span class="label label-success">@Model.Author</span>
+        <span class="label label-info">@Model.CreatedOn</span>
+        @{
+            var likesCountId = "likes" + @Model.Id;
+            var commentsCountId = "comments" + @Model.Id;
+            var labelClass = "label-success";
+        }
+        @if (@Model.Likes < 0)
+        {
+            labelClass = "label-danger";
+        }
+        <span class="label @labelClass">Likes <span id="@likesCountId">@Model.Likes</span></span>
+        @{
+            var postCommentsId = "post" + @Model.Id;
+        }
+        @if (@Model.CommentsCount > 0)
+        {
+            <span class="label label-info">
+                <span id="@commentsCountId">
+                    @Ajax.ActionLink("Comments " + @Model.CommentsCount, "ViewComments", "Comments", new { PostId = @Model.Id, area = "Posts" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = @pagingUpdateTarget,
+                            LoadingElementId = @postCommentsId,
+                            HttpMethod = "Get",
+                        },
+                        new { Title = "View Comments" })
+                </span>
+            </span>
+        }
+        else
+        {
+            <span class="label label-info">
+                <span id="@commentsCountId">Comments @Model.CommentsCount</span>
+            </span>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            var href = "http://blog-120.apphb.com/Posts/Home/Post/" + @Model.Id;
+            <p>
+                <div class="row">
+                    @*<span class="fb-like" data-href="@href" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></span>
+                    <span class="fb-share-button" data-href="@href" data-layout="button_count"></span>
+                    <span class="fb-send" data-href="@href"></span>
+                    <span class="g-plus" data-action="share" data-annotation="bubble" data-href="@href"></span>*@
+                    <div class="col-sm-2">
+                        <div class="fb-like" data-href="@href" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="fb-share-button" data-href="@href" data-layout="button_count"></div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="fb-send" data-href="@href"></div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="@href"></div>
+                    </div>
+                </div>
+            </p>
+        }
+        @if (User.Identity.IsAuthenticated && @Model.Author == User.Identity.Name)
+        {
+            var editId = "edit" + @Model.Id;
+            <div id=@editId>
+                @Html.Partial("_EditLinks", @Model.Id)
+            </div>
+        }
+
+        <h5>@Model.Content</h5>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div>
+                @{
+            var commentLinkIcon = "<span class='glyphicon glyphicon-comment' aria-hidden='true'></span>";
+            if (@Model.CommentsCount == 0)
+            {
+                commentLinkIcon = "First one to comment..." + commentLinkIcon;
+            }
+                }
+                <div>
+                    @Ajax.RawActionLink(commentLinkIcon, "CommentPost", "Comments", new { PostId = @Model.Id, area = "Posts" },
+                        new AjaxOptions
+                     {
+                         InsertionMode = InsertionMode.Replace,
+                         UpdateTargetId = "modalContentElement",
+                         LoadingElementId = "modalLoadingElement",
+                         OnBegin = "$('#modalContentElement').empty()",
+                         HttpMethod = "Get",
+                     },
+                  htmlAttributes: new { Title = "Comment", data_toggle = "modal", data_target = "#layoutModal", id = "commentPostsLink" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@LoadingElementHelper.ProgressBar(id: @postCommentsId, width: 90, alertType: "info")
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="@commentFormId">
+
+    </div>
+}
+
+<ul class="media-list">
+    <li class="media" id="@pagingUpdateTarget">
+    </li>
+</ul>

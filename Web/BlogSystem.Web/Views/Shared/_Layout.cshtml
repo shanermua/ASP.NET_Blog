@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="412149234571-i6g8ucnud004l6bl77gms7um3tvavnre.apps.googleusercontent.com">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    @Scripts.Render("~/bundles/externalLogins")
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "Posts" }, htmlAttributes: new { @class = "navbar-brand glyphicon glyphicon-home" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("MyPosts", "MyPosts", "Home", new { area = "Posts" }, htmlAttributes: null)</li>
+                    <li>@Html.ActionLink("Insert Post", "InsertPost", "Home", new { area = "Posts" }, htmlAttributes: null)</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @*<div>@Html.Action("Breadcrumbs")</div>*@
+    <div class="container body-content">
+        @TempDataHelpers.ModalScreen("modalContentElement", "modalLoadingElement", "layoutModal")
+        @LoadingElementHelper.ProgressBar(id: "mainLoadingElement", width: 90, alertType: "info")
+        <div id="newPostAlerts"></div>
+        <div id="content">
+            @RenderBody()
+        </div>
+        <hr />
+        @Html.Action("ChatContent", "Home", new { area = "" })
+        <footer>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="fb-page" data-href="https://www.facebook.com/TelerikAcademy" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TelerikAcademy"><a href="https://www.facebook.com/TelerikAcademy">Telerik</a></blockquote></div></div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fb-page" data-href="https://www.facebook.com/appharbor" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/appharbor"><a href="https://www.facebook.com/appharbor">Appharbor</a></blockquote></div></div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fb-page" data-href="https://www.facebook.com/asp.net" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/asp.net"><a href="https://www.facebook.com/asp.net">ASP.NET</a></blockquote></div></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="fb-like" data-href="http://blog-120.apphb.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="fb-share-button" data-href="http://blog-120.apphb.com/" data-layout="button_count"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="fb-send" data-href="http://blog-120.apphb.com/"></div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://blog-120.apphb.com/"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="fb-comments" data-href="http://blog-120.apphb.com/" data-numposts="5" data-colorscheme="light"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>&copy; Boycho Staykov</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/signalR")
+    @Scripts.Render("~/bundles/customSignalR")
+
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    @RenderSection("scripts", required: false)
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- jQuery -->
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@
+    <!-- jQuery ScrollTo Plugin -->
+    @*<script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script>
+        <!-- History.js -->
+        <script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+        <!-- Ajaxify -->
+        <script src="//rawgithub.com/browserstate/ajaxify/master/ajaxify-html5.js"></script>*@
+</body>
+</html>

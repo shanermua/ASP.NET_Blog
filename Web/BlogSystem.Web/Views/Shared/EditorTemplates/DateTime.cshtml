@@ -1,0 +1,46 @@
+﻿@model DateTime
+
+@{
+    var date = DateTime.Now;
+    var year = date.Year;
+    var month = date.Month;
+    var day = date.Day;
+
+    var startYear = year - 2;
+    var endYear = year;
+
+    if (ViewBag.startYear != null)
+    {
+        startYear = ViewBag.startYear;
+    }
+
+    if (ViewBag.endYear != null)
+    {
+        endYear = ViewBag.endYear;
+    }
+}
+
+<div class="row">
+    <div class="col-md-1">
+        @Html.LabelFor(m => m.Year)
+    </div>
+    <div class="col-md-2 pull-left">
+        @Html.DropDownList("Year", Enumerable.Range(startYear, endYear - startYear + 1).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        @Html.LabelFor(m => m.Month)
+    </div>
+    <div class="col-md-2 pull-left">
+        @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+        @Html.LabelFor(m => m.Day)
+    </div>
+    <div class="col-md-2 pull-left">
+        @Html.DropDownList("Day", Enumerable.Range(1, 31).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }), new { @class = "form-control" })
+    </div>
+</div>

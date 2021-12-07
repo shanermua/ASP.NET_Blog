@@ -1,0 +1,23 @@
+﻿@using BlogSystem.Web.Areas.Posts.Models
+
+@model PostViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+@if (TempData["success"] != null)
+{
+    <p>
+        @TempDataHelpers.TempMessage(TempData["success"].ToString())
+    </p>
+}
+
+<div id="postContainer"> 
+    @Html.DisplayForModel()
+</div>
+
+@* CLIENT VALIDATION *@
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
